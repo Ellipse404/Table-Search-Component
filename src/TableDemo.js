@@ -25,12 +25,17 @@ const raw_data = [
   createHeader("Ice cream sandwich", 237, 9.0, 37, 4.3),
   createHeader("Eclair", 262, 16.0, 24, 6.0),
   createHeader("Cupcake", 305, 3.7, 67, 4.3),
-  createHeader("Gingerbread", 356, 16.0, 49, 3.9),
+  createHeader("Gingerbread", 356, 12.0, 49, 3.8),
+  createHeader("Jell-O", 306, 46.0, 69, 1.9),
+  createHeader("Brownies", 319, 22.0, 79, 2.6),
+  createHeader("Carrot Cake", 346, 11.0, 29, 4.9),
+  createHeader("Cheesecake", 256, 14.0, 39, 3.8),
+
 ];
 
 const TableDemo = () => {
   const [data, setData] = useState(raw_data);
-  const [searchText, setSearchText] = useState();
+  const [searchText, setSearchText] = useState('');
   const searchInput = (searchValue) => {
     const filterData = raw_data.filter((row) => {
       return (
@@ -51,7 +56,7 @@ const TableDemo = () => {
   };
 
   const cancelSearch = () => {
-    setSearchText();
+    setSearchText('');
     searchInput(searchText);
   };
 
