@@ -9,6 +9,7 @@ import {
   Paper,
 } from "@mui/material";
 import SearchBar from "material-ui-search-bar";
+// import raw_data from './data.json' // for .json usage
 
 function createHeader(name, calories, fat, carbs, protein) {
   return {
@@ -30,16 +31,15 @@ const raw_data = [
   createHeader("Brownies", 319, 22.0, 79, 2.6),
   createHeader("Carrot Cake", 346, 11.0, 29, 4.9),
   createHeader("Cheesecake", 256, 14.0, 39, 3.8),
-
 ];
 
 const TableDemo = () => {
   const [data, setData] = useState(raw_data);
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState("");
   const searchInput = (searchValue) => {
     const filterData = raw_data.filter((row) => {
       return (
-        row.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+        row.name.toString().toLowerCase().includes(searchValue.toLowerCase()) ||
         row.calories
           .toString()
           .toLowerCase()
@@ -56,7 +56,7 @@ const TableDemo = () => {
   };
 
   const cancelSearch = () => {
-    setSearchText('');
+    setSearchText("");
     searchInput(searchText);
   };
 
@@ -79,7 +79,6 @@ const TableDemo = () => {
                 <TableCell align="right">Protein&nbsp;(g)</TableCell>
               </TableRow>
             </TableHead>
-
             <TableBody>
               {data.map((row) => (
                 <TableRow

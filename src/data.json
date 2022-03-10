@@ -1,0 +1,42 @@
+[
+  {
+      "name": 1,
+      "calories": "abc",
+      "fat": "xyz",
+      "carbs": "+91 789654123",
+      "protein": "abcyz@gmail.com"
+  },
+
+  {
+      "name": 2,
+      "calories": "xdef",
+      "fat": "uv8z",
+      "carbs": "+91 123886987",
+      "protein": "de7Tfvu@gmail.com"
+  },
+
+  {
+    "name": 3,
+    "calories": "def",
+    "fat": "uvz",
+    "carbs": "+91 123916987",
+    "protein": "def67vu@gmail.com"
+},
+
+{
+  "name": 4,
+  "calories": "ydef",
+  "fat": "qa9vz",
+  "carbs": "+91 123456987",
+  "protein": "defvu@gmail.com"
+},
+
+{
+  "name": 5,
+  "calories": "rtf",
+  "fat": "u7xz",
+  "carbs": "+91 993456987",
+  "protein": "der6fvu@gmail.com"
+}
+
+]
