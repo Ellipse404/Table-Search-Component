@@ -123,9 +123,9 @@ const TableDemo = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data.map((row) => (
+              {data.map((row,i) => (
                 <TableRow
-                  key={row.name}
+                  key={i}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
@@ -142,7 +142,7 @@ const TableDemo = () => {
                     >
                       <Typography className={classes.btnText}>Add</Typography>
                     </Button>
-                    {console.log("data_list------>", cardData)}
+                    {/* {console.log("row------>", row)} */}
                   </TableCell>
                 </TableRow>
               ))}
@@ -151,7 +151,7 @@ const TableDemo = () => {
         </TableContainer>
       </Paper>
       <Paper elevation={0} sx={{ padding: "22px", marginBottom: "50px" }}>
-        <CardData core_data={cardData} />
+        <CardData core_data={cardData} setCardData={setCardData} />
       </Paper>
     </React.Fragment>
   );
