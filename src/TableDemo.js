@@ -9,8 +9,11 @@ import {
   TableCell,
   Paper,
   Box,
+  Button,
+  Typography,
 } from "@mui/material";
 import SearchBar from "material-ui-search-bar";
+import CardData from "./CardData";
 // import raw_data from './data.json' // for .json usage
 
 const useStyle = makeStyles((theme) => ({
@@ -30,8 +33,18 @@ const useStyle = makeStyles((theme) => ({
   },
 
   tableHeader: {
-    backgroundColor: "rgb(176, 166, 222)"
-  }
+    backgroundColor: "rgb(176, 166, 222)",
+  },
+
+  btnAdd: {
+    borderRadius: "6px !important",
+    background: "rgb(150, 230, 23) !important",
+  },
+
+  btnText: {
+    color: "black",
+    fontWeight: "bold",
+  },
 }));
 
 function createHeader(name, calories, fat, carbs, protein) {
@@ -60,6 +73,7 @@ const TableDemo = () => {
   const classes = useStyle();
   const [data, setData] = useState(raw_data);
   const [searchText, setSearchText] = useState("");
+  const [cardData, setCardData] = useState([]);
   const searchInput = (searchValue) => {
     const filterData = raw_data.filter((row) => {
       return (
@@ -105,6 +119,7 @@ const TableDemo = () => {
                 <TableCell align="center">Fat&nbsp;(g)</TableCell>
                 <TableCell align="center">Carbs&nbsp;(g)</TableCell>
                 <TableCell align="center">Protein&nbsp;(g)</TableCell>
+                <TableCell align="left"></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -120,11 +135,23 @@ const TableDemo = () => {
                   <TableCell align="center">{row.fat}</TableCell>
                   <TableCell align="center">{row.carbs}</TableCell>
                   <TableCell align="center">{row.protein}</TableCell>
+                  <TableCell align="center">
+                    <Button
+                      className={classes.btnAdd}
+                      onClick={(e) => setCardData([...cardData, row])}
+                    >
+                      <Typography className={classes.btnText}>Add</Typography>
+                    </Button>
+                    {console.log("data_list------>", cardData)}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer>
+      </Paper>
+      <Paper elevation={0} sx={{ padding: "22px", marginBottom: "50px" }}>
+        <CardData core_data={cardData} />
       </Paper>
     </React.Fragment>
   );
