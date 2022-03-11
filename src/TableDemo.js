@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { createStyles, makeStyles } from "@mui/styles";
 import TableContainer from "@mui/material/TableContainer";
 import {
   Table,
@@ -7,9 +8,31 @@ import {
   TableRow,
   TableCell,
   Paper,
+  Box,
 } from "@mui/material";
 import SearchBar from "material-ui-search-bar";
 // import raw_data from './data.json' // for .json usage
+
+const useStyle = makeStyles((theme) => ({
+  rightCentered: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "right",
+    alignItems: "center",
+  },
+  searchBar: {
+    width: "50%",
+  },
+
+  tableContainer: {
+    marginTop: "22px",
+    border: "0.5px solid grey",
+  },
+
+  tableHeader: {
+    backgroundColor: "rgb(176, 166, 222)"
+  }
+}));
 
 function createHeader(name, calories, fat, carbs, protein) {
   return {
@@ -20,7 +43,7 @@ function createHeader(name, calories, fat, carbs, protein) {
     protein,
   };
 }
-
+// comment this [24-34] while using json data
 const raw_data = [
   createHeader("Frozen yoghurt", 159, 6.0, 24, 4.0),
   createHeader("Ice cream sandwich", 237, 9.0, 37, 4.3),
@@ -34,6 +57,7 @@ const raw_data = [
 ];
 
 const TableDemo = () => {
+  const classes = useStyle();
   const [data, setData] = useState(raw_data);
   const [searchText, setSearchText] = useState("");
   const searchInput = (searchValue) => {
@@ -63,20 +87,24 @@ const TableDemo = () => {
   return (
     <React.Fragment>
       <Paper elevation={0} sx={{ padding: "22px" }}>
-        <SearchBar
-          value={searchText}
-          onChange={(searchValue) => searchInput(searchValue)}
-          onCancelSearch={() => cancelSearch()}
-        />
-        <TableContainer>
+        <Box className={classes.rightCentered}>
+          <Box className={classes.searchBar}>
+            <SearchBar
+              value={searchText}
+              onChange={(searchValue) => searchInput(searchValue)}
+              onCancelSearch={() => cancelSearch()}
+            />
+          </Box>
+        </Box>
+        <TableContainer className={classes.tableContainer}>
           <Table>
-            <TableHead>
+            <TableHead className={classes.tableHeader}>
               <TableRow>
                 <TableCell>Name</TableCell>
-                <TableCell align="right">Calories</TableCell>
-                <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                <TableCell align="center">Calories</TableCell>
+                <TableCell align="center">Fat&nbsp;(g)</TableCell>
+                <TableCell align="center">Carbs&nbsp;(g)</TableCell>
+                <TableCell align="center">Protein&nbsp;(g)</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -88,10 +116,10 @@ const TableDemo = () => {
                   <TableCell component="th" scope="row">
                     {row.name}
                   </TableCell>
-                  <TableCell align="right">{row.calories}</TableCell>
-                  <TableCell align="right">{row.fat}</TableCell>
-                  <TableCell align="right">{row.carbs}</TableCell>
-                  <TableCell align="right">{row.protein}</TableCell>
+                  <TableCell align="center">{row.calories}</TableCell>
+                  <TableCell align="center">{row.fat}</TableCell>
+                  <TableCell align="center">{row.carbs}</TableCell>
+                  <TableCell align="center">{row.protein}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
