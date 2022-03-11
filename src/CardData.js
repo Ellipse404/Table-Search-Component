@@ -10,33 +10,13 @@ import React from "react";
 import { createStyles, makeStyles } from "@mui/styles";
 
 const useStyle = makeStyles((theme) => ({
-  rightCentered: {
-    display: "flex",
-    width: "100%",
-    justifyContent: "right",
-    alignItems: "center",
-  },
-  searchBar: {
-    width: "50%",
-  },
-
   tableContainer: {
     marginTop: "22px",
     border: "0.5px solid grey",
   },
 
   tableHeader: {
-    backgroundColor: "rgb(176, 166, 222)",
-  },
-
-  btnAdd: {
-    borderRadius: "6px !important",
-    background: "rgb(150, 230, 23) !important",
-  },
-
-  btnText: {
-    color: "black",
-    fontWeight: "bold",
+    backgroundColor: "rgb(130, 194, 183)",
   },
 }));
 
@@ -47,7 +27,7 @@ const CardData = (props) => {
     <React.Fragment>
       <TableContainer className={classes.tableContainer}>
         <Table>
-          <TableHead sx={{ backgroundColor: "purple" }}>
+          <TableHead className={classes.tableHeader}>
             <TableRow>
               <TableCell>Name</TableCell>
               <TableCell align="center">Calories</TableCell>
