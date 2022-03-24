@@ -8,7 +8,7 @@ import {
   Typography,
   Button,
 } from "@mui/material";
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import { createStyles, makeStyles } from "@mui/styles";
 
 const useStyle = makeStyles((theme) => ({
@@ -33,21 +33,23 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const CardData = (props) => {
-
   const classes = useStyle();
   useEffect(() => {
     return () => {
       // cleanup
-  }
-  },[]);
+    };
+  }, []);
 
-  const deleteRow = (i) =>{
-    console.log('---------------->',props.core_data.filter((item, idx)=>idx !== i))
+  const deleteRow = (i) => {
+    // console.log('---------------->',props.core_data.filter((item, idx)=>idx !== i))
     let temp = props.core_data.filter((item, idx)=>idx !== i);
     props.setCardData(temp)
-  }
 
-  console.log('props.core_data---->',props.core_data);
+    // props.core_data.splice(i, 1);
+    // props.setCardData([...props.core_data]);
+  };
+
+  console.log("props.core_data---->", props.core_data);
   return (
     <React.Fragment>
       <TableContainer className={classes.tableContainer}>
@@ -63,7 +65,7 @@ const CardData = (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {props.core_data.map((row1,i) => (
+            {props.core_data.map((row1, i) => (
               <TableRow
                 key={i}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -76,10 +78,11 @@ const CardData = (props) => {
                 <TableCell align="center">{row1.carbs}</TableCell>
                 <TableCell align="center">{row1.protein}</TableCell>
                 <TableCell align="center">
-                  <Button className={classes.btnAdd}
-                  onClick={(e) =>{ 
-                    deleteRow(i);
-                  }}
+                  <Button
+                    className={classes.btnAdd}
+                    onClick={(e) => {
+                      deleteRow(i);
+                    }}
                   >
                     <Typography className={classes.btnText}>Del</Typography>
                   </Button>
