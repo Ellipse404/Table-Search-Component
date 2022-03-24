@@ -123,7 +123,7 @@ const TableDemo = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data.map((row,i) => (
+              {data.map((row, i) => (
                 <TableRow
                   key={i}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}

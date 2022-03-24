@@ -42,8 +42,8 @@ const CardData = (props) => {
 
   const deleteRow = (i) => {
     // console.log('---------------->',props.core_data.filter((item, idx)=>idx !== i))
-    let temp = props.core_data.filter((item, idx)=>idx !== i);
-    props.setCardData(temp)
+    let temp = props.core_data.filter((item, idx) => idx !== i);
+    props.setCardData(temp);
 
     // props.core_data.splice(i, 1);
     // props.setCardData([...props.core_data]);
