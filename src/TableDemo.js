@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createStyles, makeStyles } from "@mui/styles";
 import TableContainer from "@mui/material/TableContainer";
 import {
@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import SearchBar from "material-ui-search-bar";
 import CardData from "./CardData";
+import CounterComponent from "./Counter";
 // import raw_data from './data.json' // for .json usage
 
 const useStyle = makeStyles((theme) => ({
@@ -47,26 +48,27 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-function createHeader(name, calories, fat, carbs, protein) {
+function createHeader(name, calories, fat, carbs, protein, count) {
   return {
     name,
     calories,
     fat,
     carbs,
     protein,
+    count,
   };
 }
 // comment this [24-34] while using json data
 const raw_data = [
-  createHeader("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createHeader("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createHeader("Eclair", 262, 16.0, 24, 6.0),
-  createHeader("Cupcake", 305, 3.7, 67, 4.3),
-  createHeader("Gingerbread", 356, 12.0, 49, 3.8),
-  createHeader("Jell-O", 306, 46.0, 69, 1.9),
-  createHeader("Brownies", 319, 22.0, 79, 2.6),
-  createHeader("Carrot Cake", 346, 11.0, 29, 4.9),
-  createHeader("Cheesecake", 256, 14.0, 39, 3.8),
+  createHeader("Frozen yoghurt", 159, 6.0, 24, 4.0, 1),
+  createHeader("Ice cream sandwich", 237, 9.0, 37, 4.3, 1),
+  createHeader("Eclair", 262, 16.0, 24, 6.0, 1),
+  createHeader("Cupcake", 305, 3.7, 67, 4.3, 1),
+  createHeader("Gingerbread", 356, 12.0, 49, 3.8, 1),
+  createHeader("Jell-O", 306, 46.0, 69, 1.9, 1),
+  createHeader("Brownies", 319, 22.0, 79, 2.6, 1),
+  createHeader("Carrot Cake", 346, 11.0, 29, 4.9, 1),
+  createHeader("Cheesecake", 256, 14.0, 39, 3.8, 1),
 ];
 
 const TableDemo = () => {
@@ -74,6 +76,31 @@ const TableDemo = () => {
   const [data, setData] = useState(raw_data);
   const [searchText, setSearchText] = useState("");
   const [cardData, setCardData] = useState([]);
+  const [countRow, setCountRow] = useState()
+
+  useEffect(() => {
+    return () => {
+      // cleanup
+  
+    };
+  }, [...cardData]);
+
+  // const childToParent = (count_data) => {
+  //   setCountRow(count_data)
+  // }
+
+  const addToCart = (name, row) => {
+    const check_item = cardData.findIndex(item => item.name === name)
+    if (check_item !== -1) {
+      cardData[check_item].count++;
+    } else {
+      setCardData([...cardData, row])
+    }
+    console.log('messy count ====>', cardData[check_item].count )
+
+  }
+  console.log('countRow ---->', countRow)
+
   const searchInput = (searchValue) => {
     const filterData = raw_data.filter((row) => {
       return (
@@ -119,7 +146,9 @@ const TableDemo = () => {
                 <TableCell align="center">Fat&nbsp;(g)</TableCell>
                 <TableCell align="center">Carbs&nbsp;(g)</TableCell>
                 <TableCell align="center">Protein&nbsp;(g)</TableCell>
+                <TableCell align="center">Quantity</TableCell>
                 <TableCell align="left"></TableCell>
+
               </TableRow>
             </TableHead>
             <TableBody>
@@ -135,10 +164,23 @@ const TableDemo = () => {
                   <TableCell align="center">{row.fat}</TableCell>
                   <TableCell align="center">{row.carbs}</TableCell>
                   <TableCell align="center">{row.protein}</TableCell>
+                  <TableCell align="center">1</TableCell>
+
+                  {/* <TableCell align="center">
+                     <CounterComponent childToParent={childToParent}/> 
+                  </TableCell> */}
                   <TableCell align="center">
                     <Button
                       className={classes.btnAdd}
-                      onClick={(e) => setCardData([...cardData, row])}
+                      onClick={(e) => addToCart(row.name, row)
+                        
+                      //  { if(i in cardData) {
+                      //    row.count++
+                      //  } else {
+
+                      //     setCardData([...cardData, row])}
+                      //   }
+                    }
                     >
                       <Typography className={classes.btnText}>Add</Typography>
                     </Button>
@@ -151,7 +193,7 @@ const TableDemo = () => {
         </TableContainer>
       </Paper>
       <Paper elevation={0} sx={{ padding: "22px", marginBottom: "50px" }}>
-        <CardData core_data={cardData} setCardData={setCardData} />
+        <CardData core_data={cardData} setCardData={setCardData}  />
       </Paper>
     </React.Fragment>
   );

@@ -61,6 +61,7 @@ const CardData = (props) => {
               <TableCell align="center">Fat&nbsp;(g)</TableCell>
               <TableCell align="center">Carbs&nbsp;(g)</TableCell>
               <TableCell align="center">Protein&nbsp;(g)</TableCell>
+              <TableCell align="center">Count</TableCell>
               <TableCell align="center"></TableCell>
             </TableRow>
           </TableHead>
@@ -77,6 +78,7 @@ const CardData = (props) => {
                 <TableCell align="center">{row1.fat}</TableCell>
                 <TableCell align="center">{row1.carbs}</TableCell>
                 <TableCell align="center">{row1.protein}</TableCell>
+                <TableCell align="center">{row1.count}</TableCell>
                 <TableCell align="center">
                   <Button
                     className={classes.btnAdd}
