@@ -35,7 +35,7 @@ const CounterComponent = ({childToParent}) => {
   return (
     <React.Fragment>
       <Stack direction="row" className={classes.stabilizedBox} >
-      <IconButton aria-label="delete" color="primary"  onClick={(e) => {setCounter(counter - 1); childToParent(counter)} }>
+      <IconButton aria-label="delete" color="primary"  onClick={(e) => {setCounter(Math.max(itemCount - 1, 0)); childToParent(counter)} }>
         <DeleteIcon />
       </IconButton>
         <Box sx={{paddingLeft:"4px", paddingRight:"4px"}}>
